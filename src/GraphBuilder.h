@@ -17,8 +17,8 @@
 #include"TFile.h"
 #include"TGraphErrors.h"
 
-#include"RunProvider.h"
-#include"GetBaseObs.h"
+#include"DTDPGAnalysis/DTMultiRunAnalysis/src/RunProvider.h"
+#include"DTDPGAnalysis/DTMultiRunAnalysis/src/BaseGetObs.h"
 
 class GraphBuilder
 {
@@ -34,8 +34,8 @@ class GraphBuilder
 
   GraphBuilder(std::string name,
 	       std::vector<RunProvider> & run_providers,
-	       std::unique_ptr<GetBaseObs> x,
-	       std::unique_ptr<GetBaseObs> y);
+	       std::unique_ptr<BaseGetObs> x,
+	       std::unique_ptr<BaseGetObs> y);
 
   /// Destructor
 
@@ -44,11 +44,11 @@ class GraphBuilder
   /// Writes the TGraph that was built at construction
   /// stage into a root TFile
 
-  writeGraphToFile(std::shared_ptr<TFile> t_file, std::string folder);
+  void writeGraphToFile(std::shared_ptr<TFile> t_file, std::string folder);
 
  private:
 
-  std::unique_ptr<TGraphErrors> m_graph;
+  std::shared_ptr<TGraphErrors> m_graph;
 
 };
 

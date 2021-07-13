@@ -35,7 +35,7 @@ class RunProvider
 
   /// Returns path to ntuple file
 
-  inline std::string ntuplePath() const { return m_file_paths[tag::NTUP]; };
+  inline std::string ntuplePath() const { return m_file_paths.at(tag::NTUP); };
 
   /// Returns run number
   inline int runNumber() const { return m_run_number; };
@@ -55,12 +55,12 @@ class RunProvider
 
   /// Base folders where ntuple and results TFiles are stored
 
-  static constexpr std::BASE_RESULT_PATH = "/eos/project/c/cmsweb/www/MUON/dpgdt/sx5/Results/SliceTest/";
-  static constexpr std::BASE_NTUPLE_PATH = "/eos/cms/store/group/dpg_dt/comm_dt/commissioning_2021_data/ntuples/ST/";
+  static constexpr char BASE_RESULT_PATH[] = "/eos/project/c/cmsweb/www/MUON/dpgdt/sx5/Results/SliceTest/";
+  static constexpr char BASE_NTUPLE_PATH[] = "/eos/cms/store/group/dpg_dt/comm_dt/commissioning_2021_data/ntuples/ST/";
   
   int m_run_number;
-  std::map<std::string,std::string> m_file_paths;
-  std::map<std::string,std::shared_ptr<TFile>> m_tfiles;
+  std::map<tag, std::string> m_file_paths;
+  std::map<tag, std::shared_ptr<TFile>> m_tfiles;
   
 };
 

@@ -9,20 +9,23 @@
  *
  */ 
 
-#include"GetBaseObs.h"
+#include"DTDPGAnalysis/DTMultiRunAnalysis/src/BaseGetObs.h"
 
-class GetRunObs : public GetBaseObs
+#include<iostream>
+
+
+class GetRunObs : public BaseGetObs
 {
 
  public:
 
   /// Constructor (refers to base class one)
 
-  GetRunObs(const RunProvider::tag tag_type, const std::string h_name = "") { GetBaseObs::GetBaseObs(tag_type,h_name); };
+ GetRunObs(const RunProvider::tag tag_type, const std::string h_name = "") : BaseGetObs(tag_type,h_name) { };
 
   /// Destructor
 
-  virtual GetRunObs() {};
+  virtual ~GetRunObs() {};
 
   /// Main function returning
   /// - run number (pair.first)
@@ -30,7 +33,7 @@ class GetRunObs : public GetBaseObs
 
   virtual std::pair<double, double> getObs(const RunProvider & run_provider) const
   { 
-
+   
     auto result = std::make_pair<double,double>(run_provider.runNumber(),0.5);
     return result;
 

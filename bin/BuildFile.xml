@@ -1,0 +1,3 @@
+<bin name="averagesByRun" file="averagesByRun.cc">
+  <use name="DTDPGAnalysis/DTMultiRunAnalysis"/>
+</bin>

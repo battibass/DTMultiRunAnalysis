@@ -9,22 +9,22 @@
  *
  */                                                                                                                                                                                                        
 
-#include"GetBaseObs.h"
+#include"DTDPGAnalysis/DTMultiRunAnalysis/src/BaseGetObs.h"
 
 #include"TH1F.h"
 
-class GetMeanObs : public GetBaseObs
+class GetMeanObs : public BaseGetObs
 {
 
  public:
 
   /// Constructor (refers to base class one)
 
-  GetRunObs(const RunProvider::tag tag_type, const std::string h_name = "") { GetBaseObs::GetBaseObs(tag_type, h_name); };
+ GetMeanObs(const RunProvider::tag tag_type, const std::string h_name = "") : BaseGetObs(tag_type, h_name) { };
 
   /// Destructor
 
-  virtual GetRunObs() {};
+  virtual ~GetMeanObs() {};
 
   /// Main function returning
   /// - mean of TH1F (pair.first)
@@ -34,7 +34,7 @@ class GetMeanObs : public GetBaseObs
   {
 
     auto histo = static_cast<TH1F*>(run_provider.getPlot(m_tag_type, m_h_name));
-    auto result = std::make_pair<double,double>(histo.GetMean(), histo.GetMeanError());
+    auto result = std::make_pair<double,double>(histo->GetMean(), histo->GetMeanError());
     return result;
 
   };
